@@ -1,7 +1,11 @@
 # c-loader
 c-loader是一个组件式开发的webpack loader，它可以根据require模块时添加参数来决定加载模块的依赖样式文件。
 
+c-loader is a webpack loader for component-style. It could load the dependency style for the required module according to the query in require statment.
+
 **在往下了解c-loader之前，建议先看看c-loader作者眼中的[组件](https://github.com/vqun/blog/blob/master/%E7%BB%84%E4%BB%B6.md)。**
+
+**Before reading more about c-loader, it is great recommendation to hava a look on the [component](https://github.com/vqun/blog/blob/master/%E7%BB%84%E4%BB%B6.md)**.
 
 ## Install
 > npm install c-loader --save-dev
