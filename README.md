@@ -11,7 +11,7 @@ c-loader is a webpack loader for component-style. It could load the dependency s
 > npm install c-loader --save-dev
 
 
-## Using
+## Usage
 ```javascript
 // in webpack.config.js
   module: {
