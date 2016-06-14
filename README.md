@@ -34,11 +34,6 @@ c-loader is a webpack loader for component-style. It could load the dependency s
       loader: 'style!css' // because c-loader will require the css for the required module, you need the style and css loader to handle the css
     }]
   }
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 79ec14d0c4808b146492b56e6b19a0d21d0042d7
   // in your module
   var dialog = require('./dialog?css');
   // then the c-loader will product a require expression for the dialog module. In this example, it will require index.css relative to dialog file.
