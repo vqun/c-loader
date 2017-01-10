@@ -13,6 +13,10 @@ function hasPostfix(c) {
   return /\.[a-zA-Z]+$/.test(c);
 }
 
+function posfixCss(css) {
+  return hasPostfix(css) ? css : css + '.css';
+}
+
 module.exports = {
   accessible: accessible,
   posfixCss: posfixCss
