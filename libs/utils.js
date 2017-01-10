@@ -13,11 +13,26 @@ function hasPostfix(c) {
   return /\.[a-zA-Z]+$/.test(c);
 }
 
-function posfixCss(css) {
-  return hasPostfix(css) ? css : css + '.css';
+function postfixCss(css, postfix) {
+  return hasPostfix(css) ? css : css + ('.' + (postfix || 'css')).replace(/\.{2,}/, '.');
+}
+
+function isObject(o) {
+  return Object.prototype.toString.call(o).slice(8, -1) === 'Object';
+}
+function assign(target, src) {
+  if(isObject(target) && isObject(src)) {
+    for(var k in src) {
+      if(src.hasOwnProperty(k) && !target.hasOwnProperty(k)) {
+        target[k] = src[k];
+      }
+    }
+  }
+  return target;
 }
 
 module.exports = {
   accessible: accessible,
-  posfixCss: posfixCss
+  postfixCss: postfixCss,
+  assign: assign
 };

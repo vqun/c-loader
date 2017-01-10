@@ -10,8 +10,11 @@ c-loader is a webpack loader for component-style. It could load the dependency s
 ## Install
 > npm install c-loader --save-dev
 
+## c-loader configs
+* **css**: tell c-loader to load style
+* **postfix**: tell c-loader what the style's postfix, `'css'` by default
 
-## Usage
+## Usage 1
 ```javascript
 // in webpack.config.js
   module: {
@@ -35,12 +38,47 @@ c-loader is a webpack loader for component-style. It could load the dependency s
     }]
   }
   // in your module
-  var dialog = require('./dialog?css');
+  var dialog = require('./dialog?css&postfix=css');
   // then the c-loader will product a require expression for the dialog module. In this example, it will require index.css relative to dialog file.
   // In fact, in webpack, c-loader will product like this:
   require('./index.css');
   ...// Here is dialog file content.
 ```
+
+## Usage 2
+Also, you can config the `css` and `postfix` in webpack.config.js instead of in `require` or `import` statement.
+
+```javascript
+// in webpack.config.js
+  module: {
+    loaders: [{
+      test: /\.js(?:\?.+)?$/,
+      loader: 'c-loader?css&postfix=less'
+    }, {
+      test: /\.css(?:\?.+)?$/,
+      loader: 'style!css' // because c-loader will require the css for the required module, you need the style and css loader to handle the css
+    }]
+  }
+  // or
+  module: {
+    preloaders: [{
+      test: /\.js(?:\?.+)?$/,
+      loader: 'c-loader?css&postfix=less',
+    }],
+    loaders: [{
+      test: /\.css(?:\?.+)?$/,
+      loader: 'style!css' // because c-loader will require the css for the required module, you need the style and css loader to handle the css
+    }]
+  }
+```
+Then in your module
+
+> var dialog = require('./dialog'); // no `css` and `postfix` here
+
+or
+
+> import dialog from './dialog'); // no `css` and `postfix` here
+
 
 ## How To Determin The Style File To Be Used
 c-loader will resolve the require query, and determin the style file to be used. c-loader resolves the query and gets the '**css**' value, then require the file to the value.
