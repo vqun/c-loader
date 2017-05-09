@@ -9,7 +9,7 @@ or
 ## c-loader configs
 * **css**: tell c-loader to load style
 * **postfix**: tell c-loader what the style's postfix is, `'css'` by default
-* **module**: [added in v0.3.3] tell c-loader what kind of import used, `'require'` by default
+* **module**: [added in v0.4.0] tell c-loader what kind of import used, `'require'` by default
 
 ## Usage 1
 ```javascript
