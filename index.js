@@ -24,6 +24,7 @@ module.exports = function(source) {
     return source;
   }
   css = path.relative(this.context, css);
+  var moduleResolver = query.module || 'require'
 
-  return 'require("./' + css + '");' + source;
+  return (!query.module ? 'require("./' + css + '");' : query.module + ' "./' + css + '";') + source;
 };
