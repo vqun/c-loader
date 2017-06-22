@@ -1,6 +1,6 @@
 {
   "name": "c-loader",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "组件开发时，使用Webpack自动引用组件样式文件",
   "author": "veequn@qq.com",
   "maintainers": [
