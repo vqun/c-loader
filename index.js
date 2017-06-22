@@ -7,7 +7,10 @@ var space = /^\s+|\s+$/g;
 
 module.exports = function(source) {
   this.cacheable();
-  var query = assign(assign({}, loaderUtils.getOptions(this.query)), loaderUtils.getOptions(this.resourceQuery));
+  var r = {
+    query: this.resourceQuery
+  }
+  var query = assign(assign({}, loaderUtils.getOptions(this)), loaderUtils.getOptions(r));
   if (!('css' in query)) {
     return source;
   }
