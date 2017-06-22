@@ -11,11 +11,12 @@ module.exports = function(source) {
     query: this.resourceQuery
   }
   var query = assign({}, loaderUtils.getOptions(this), loaderUtils.getOptions(r));
-  if (!query.css) {
+  if (typeof query.css !== 'string' && !query.css) {
     return source;
   }
   var css = query.css, context = this.options.context, postfix = query.postfix;
-  if (typeof css !== 'string') {
+  // !css: maybe ?css=&postfix=less
+  if (!css || typeof css !== 'string') {
     css = postfixCss('index', postfix);
     context = this.context;
   }
