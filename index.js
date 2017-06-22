@@ -7,7 +7,7 @@ var space = /^\s+|\s+$/g;
 
 module.exports = function(source) {
   this.cacheable();
-  var query = assign(loaderUtils.parseQuery(this.resourceQuery), loaderUtils.parseQuery(this.query));
+  var query = assign(assign({}, loaderUtils.getOptions(this.query)), loaderUtils.getOptions(this.resourceQuery));
   if (!('css' in query)) {
     return source;
   }
@@ -26,5 +26,5 @@ module.exports = function(source) {
   css = path.relative(this.context, css);
   var moduleResolver = query.module || 'require'
 
-  return (!query.module ? 'require("./' + css + '");' : query.module + ' "./' + css + '";') + source;
+  return (!query.module ? 'require("./' + css + '");' : query.module + ' "./' + css + '";') + (!!query.onlycss ? '' : source);
 };
