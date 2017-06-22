@@ -20,11 +20,15 @@ function postfixCss(css, postfix) {
 function isObject(o) {
   return Object.prototype.toString.call(o).slice(8, -1) === 'Object';
 }
-function assign(target, src) {
-  if(isObject(target) && isObject(src)) {
-    for(var k in src) {
-      if(src.hasOwnProperty(k) && !target.hasOwnProperty(k)) {
-        target[k] = src[k];
+function assign() {
+  var target = arguments[0]
+  if(isObject(target) && arguments.length > 1) {
+    for(var j = 1, l = arguments.length; j < l;) {
+      var src = arguments[j++]
+      for(var k in src) {
+        if(src.hasOwnProperty(k)) {
+          target[k] = src[k]
+        }
       }
     }
   }
@@ -34,5 +38,5 @@ function assign(target, src) {
 module.exports = {
   accessible: accessible,
   postfixCss: postfixCss,
-  assign: assign
+  assign: Object.assign || assign
 };

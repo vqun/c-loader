@@ -10,7 +10,7 @@ module.exports = function(source) {
   var r = {
     query: this.resourceQuery
   }
-  var query = assign(assign({}, loaderUtils.getOptions(this)), loaderUtils.getOptions(r));
+  var query = assign({}, loaderUtils.getOptions(this), loaderUtils.getOptions(r));
   if (!('css' in query)) {
     return source;
   }
