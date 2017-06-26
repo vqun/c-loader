@@ -12,6 +12,15 @@ or
 * **module**: [added in v0.4.0] tell c-loader what kind of import used, `'require'` by default
 * **onlycss**: [added in v0.5.0] tell c-loader to load the style only (in react, when you just want to render the component's markup in server, not in client side, then you should load the style without the component's react codes)
 
+## css options Can use `interpolate names` now (>= v0.8.0)
+Start with v0.8.0, you can use the `interpolate names` in c-loader. Exp.:
+```javascript
+var dialog = require('./dialog?css=./[path][name].less&postfix=css');
+```
+c-loader will resolve the interpolate names, and use the resolved name as the request style name.
+
+P.S. see [interpolateName](https://github.com/webpack/loader-utils#interpolatename) for more detail
+
 ## Usage 1
 ```javascript
 // in webpack.config.js
@@ -79,6 +88,18 @@ Then c-loader will keep the less, and load **styles/my-dialog.less**.
 
 ## How To Determin The Style File's *Context*
 After c-loader gets the 'css' query, it needs determin the **context** to get the file. For local module and NPM module, c-loader has a rule for them. This rule depends on the 'css' value.
+
+### 'css' Has A Value With './' prefixed [Added in v0.8.0]
+If the required module gets a 'css' value and 'css' starts with './', then use the '**context of the moudle**' as the style's context. Exp:
+
+```javascript
+var localDialog = require('./dialog?css=./[name].less'); // Local Module
+
+var npmDialog = require('dialog?css=./[name].less'); // NPM Module
+```
+then, c-loader will load '**{dialog_context}/dialog.less**' for **localDialog**.
+
+And load '**node_modules/dialog/dialog.less**' for **npmDialog**.
 
 ### 'css' Has A Value
 If the required module gets a 'css' value, use the '**context**' option in the webpack.config.js as the style's context. Exp:

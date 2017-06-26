@@ -17,10 +17,14 @@ module.exports = function(source) {
   var css = query.css, context = this.options.context, postfix = query.postfix;
   // !css: maybe ?css=&postfix=less
   if (!css || typeof css !== 'string') {
-    css = postfixCss('index', postfix);
+    css = 'index';
     context = this.context;
+  } else {
+    // if the css starts with './', then the context should be current resource context
+    css.indexOf('./') === 0 && (context = this.context)
   }
-  css = css.replace(space, '');
+  css = loaderUtils.interpolateName(this, css.replace(space, ''), this.options)
+
   css = postfixCss(css, postfix);
   css = path.resolve(context, css);
 
