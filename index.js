@@ -9,15 +9,15 @@ const SPACE = /^\s+|\s+$/g;
 
 module.exports = function(source, sourceMap) {
   if(this.cacheable) this.cacheable();
-  console.log('======111')
+
   const query = assign({}, loaderUtils.getOptions(this), loaderUtils.getOptions({
     query: this.resourceQuery
   }));
-  console.log('======222')
+  
   if (typeof query.css !== 'string' && !query.css) {
     return source;
   }
-  console.log('======333')
+  
   let css = query.css, context = this.rootContext
   const postfix = query.postfix
   // !css: maybe ?css=&postfix=less
@@ -36,8 +36,6 @@ module.exports = function(source, sourceMap) {
 
   css = postfixCss(css, postfix);
   css = path.resolve(context, css);
-
-  console.log('4444', css)
 
   if (accessible(css) instanceof Error) {
     return source;
