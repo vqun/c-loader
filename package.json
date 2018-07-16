@@ -24,6 +24,7 @@
   ],
   "license": "MIT License",
   "dependencies": {
-    "loader-utils": ">=1.0.0"
+    "loader-utils": ">=1.0.0",
+    "source-map": "^0.7.3"
   }
 }
