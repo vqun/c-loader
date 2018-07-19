@@ -12,9 +12,6 @@
     "url": "https://github.com/vqun/c-loader/issues",
     "email": "veequn@qq.com"
   },
-  "peerDependencies": {
-    "webpack": "^1.0.0　|| ^2.0.0 || ^2.0.0-beta || ^2.0.0-rc"
-  },
   "keywords": [
     "loader",
     "webpack",
