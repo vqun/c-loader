@@ -9,12 +9,13 @@ function accessible() {
   }
 }
 
-function hasPostfix(c) {
-  return /\.[a-zA-Z]+$/.test(c);
+function hasPostfix(c, postfix) {
+  return !!postfix ? c.lastIndexOf(postfix) === 0 : /\.[a-zA-Z]+$/.test(c);
 }
 
 function postfixCss(css, postfix) {
-  return hasPostfix(css) ? css : css + ('.' + (postfix || 'css')).replace(/\.{2,}/, '.');
+  postfix = postfix || 'css'
+  return hasPostfix(css, postfix) ? css : css + ('.' + postfix).replace(/\.{2,}/, '.');
 }
 
 function isObject(o) {
