@@ -10,7 +10,7 @@ function accessible() {
 }
 
 function hasPostfix(c, postfix) {
-  return !!postfix ? c.lastIndexOf(postfix) === 0 : /\.[a-zA-Z]+$/.test(c);
+  return !!postfix ? c.lastIndexOf(postfix) !== -1 : /\.[a-zA-Z]+$/.test(c);
 }
 
 function postfixCss(css, postfix) {
